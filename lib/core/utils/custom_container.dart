@@ -95,7 +95,7 @@ class CustomContainer extends StatelessWidget {
                         ),
                       ],
               ),
-              child: child ?? Container(),
+              child: Center(child: child ?? Container()),
             ),
           );
   }

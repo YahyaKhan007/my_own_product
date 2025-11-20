@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../utils/alert_dialog.dart';
-import '../../utils/custom_text_field.dart';
+import '../../utils/custom_text.dart';
 
 class MessageService {
   static GlobalKey<ScaffoldMessengerState> messengerKey = GlobalKey<ScaffoldMessengerState>();

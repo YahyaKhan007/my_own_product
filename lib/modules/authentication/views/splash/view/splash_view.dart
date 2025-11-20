@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:my_own_product/core/routes/app_routes.dart';
-import 'package:my_own_product/core/utils/custom_text_field.dart';
+import 'package:my_own_product/core/utils/custom_text.dart';
 
 class SplashView extends StatefulWidget {
   const SplashView({super.key});
