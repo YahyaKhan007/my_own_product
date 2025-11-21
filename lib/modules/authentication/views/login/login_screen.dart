@@ -27,7 +27,9 @@ class LoginScreen extends StatelessWidget {
           // height: 48,
           padding: EdgeInsets.symmetric(vertical: 8),
 
-          onTap: () {},
+          onTap: () {
+            Get.toNamed(AppRoutes.dashboardScreen.name);
+          },
 
           isExpanded: false,
           child: CustomText(text: 'Login'),

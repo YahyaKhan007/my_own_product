@@ -33,7 +33,7 @@ class SignupScreen extends StatelessWidget {
           },
 
           isExpanded: false,
-          child: CustomText(text: 'Signup'),
+          child: CustomText(text: 'Next'),
         ).paddingSymmetric(horizontal: 32),
       ).paddingSymmetric(vertical: 24),
       body: SingleChildScrollView(
@@ -66,7 +66,6 @@ class SignupScreen extends StatelessWidget {
       ),
     );
   }
-
   Widget signupOption({
     required String fieldName,
     required String fieldHint,
@@ -85,4 +84,5 @@ class SignupScreen extends StatelessWidget {
       ],
     );
   }
+
 }
