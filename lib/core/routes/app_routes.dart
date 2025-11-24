@@ -16,6 +16,8 @@ import 'package:my_own_product/modules/dashboard/sub_modules/home/views/home_scr
 import 'package:my_own_product/modules/dashboard/sub_modules/profile/views/profile_screen.dart';
 import 'package:my_own_product/modules/dashboard/views/dashboard_screen.dart';
 
+import '../../modules/dashboard/sub_modules/chat/views/message_screen.dart';
+
 enum AppRoutes {
   initial,
   getStarted,
@@ -33,6 +35,7 @@ enum AppRoutes {
   chatScreen,
   profileScreen,
   dashboardScreen,
+  messageScreen,
   // Add more routes here
 }
 
@@ -71,9 +74,13 @@ class AppPages {
     ),
     GetPage(name: AppRoutes.purposeScreen.path, page: () => PurposeScreen()),
     GetPage(name: AppRoutes.profileScreen.path, page: () => ProfileScreen()),
+    GetPage(name: AppRoutes.messageScreen.path, page: () => MessageScreen()),
     GetPage(name: AppRoutes.chatScreen.path, page: () => ChatScreen()),
     GetPage(name: AppRoutes.homeScreen.path, page: () => HomeScreen()),
-    GetPage(name: AppRoutes.dashboardScreen.path, page: () => DashboardScreen()),
+    GetPage(
+      name: AppRoutes.dashboardScreen.path,
+      page: () => DashboardScreen(),
+    ),
     GetPage(
       name: AppRoutes.iCanSpeakScreen.path,
       page: () {
@@ -116,8 +123,11 @@ extension AppRoutesExtension on AppRoutes {
       case AppRoutes.chatScreen:
         return '/chatScreen';
       case AppRoutes.profileScreen:
-        return '/profileScreen';case AppRoutes.dashboardScreen:
+        return '/profileScreen';
+      case AppRoutes.dashboardScreen:
         return '/dashboardScreen';
+      case AppRoutes.messageScreen:
+        return '/messageScreen';
 
       // Default route
     }
