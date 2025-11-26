@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:my_own_product/core/data/app_colors.dart';
+import 'package:my_own_product/core/utils/base_scaffold.dart';
 import 'package:my_own_product/core/utils/custom_text.dart';
 import 'package:my_own_product/core/utils/custom_text_field.dart';
 import 'package:my_own_product/modules/authentication/views/widgets/auth_appbar.dart';
@@ -11,13 +12,16 @@ class ResetPasswordScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return BaseScaffold(
+      safeBottom: true,
+      top: true,
       appBar: authAppBar(
         height: Get.height * 0.15,
         pageName: 'Reset Password',
-        pageDescription: 'Please enter the registered email to Reset your Password',
+        pageDescription:
+            'Please enter the registered email to Reset your Password',
       ),
-      bottomNavigationBar: SizedBox(
+      bottom: SizedBox(
         height: 40,
         child: CustomButton(
           color: AppColors.buttonColor,
@@ -41,8 +45,6 @@ class ResetPasswordScreen extends StatelessWidget {
               fieldHint: 'Enter the email',
               onChange: (String value) {},
             ),
-
-
           ],
         ).paddingSymmetric(horizontal: 16),
       ),
@@ -61,8 +63,10 @@ class ResetPasswordScreen extends StatelessWidget {
       children: [
         CustomText(text: fieldName, textStyle: TextStyle(fontSize: 14)),
         SizedBox(height: 8),
-        CustomTextField(onChange: onChange, hintText: fieldHint,
-          textInputType:textInputType ?? TextInputType.emailAddress,
+        CustomTextField(
+          onChange: onChange,
+          hintText: fieldHint,
+          textInputType: textInputType ?? TextInputType.emailAddress,
         ),
       ],
     );

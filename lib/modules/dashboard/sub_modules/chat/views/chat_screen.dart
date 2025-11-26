@@ -4,14 +4,22 @@ import 'package:my_own_product/core/data/app_colors.dart';
 import 'package:my_own_product/core/routes/app_routes.dart';
 import 'package:my_own_product/core/utils/custom_text.dart';
 import 'package:my_own_product/modules/dashboard/sub_modules/chat/views/widgets/chat_room_appbar.dart';
+import 'package:my_own_product/modules/drawer/controller/drawer_controller.dart';
 
 class ChatScreen extends StatelessWidget {
-  const ChatScreen({super.key});
+  ChatScreen({super.key});
+
+  final drawerController = Get.find<AppDrawerController>();
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: chatroomAppbar(appbarHeight: Get.height * 0.14),
+      appBar: chatroomAppbar(
+        appbarHeight: Get.height * 0.14,
+        onMenuPressed: () {
+          drawerController.toggleDrawer();
+        },
+      ),
       body: Column(
         children: [
           // Stories Section
@@ -30,7 +38,7 @@ class ChatScreen extends StatelessWidget {
         itemCount: 12,
         itemBuilder: (context, index) {
           return messageOption(
-            onTap: (){
+            onTap: () {
               Get.toNamed(AppRoutes.messageScreen.name);
             },
             name: 'User X',
@@ -40,8 +48,10 @@ class ChatScreen extends StatelessWidget {
           );
         },
         separatorBuilder: (context, index) {
-          return Divider(color: Colors.grey.withValues(alpha: 0.1),).paddingOnly(left: Get.width * 0.2, right: 16);
-        }
+          return Divider(
+            color: Colors.grey.withValues(alpha: 0.1),
+          ).paddingOnly(left: Get.width * 0.2, right: 16);
+        },
       ),
     );
   }
@@ -66,18 +76,25 @@ class ChatScreen extends StatelessWidget {
           textStyle: TextStyle(fontSize: 12, color: Colors.grey),
         ),
         trailing: Column(
-          mainAxisAlignment:
-          MainAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.center,
           children: [
-          CustomText(text: '10:00',textStyle: TextStyle(fontSize: 12, color: Colors.grey),),
-          CircleAvatar(radius: 10,
+            CustomText(
+              text: '10:00',
+              textStyle: TextStyle(fontSize: 12, color: Colors.grey),
+            ),
+            CircleAvatar(
+              radius: 10,
 
-          backgroundColor: AppColors.buttonColor.withValues(alpha: 0.5),
-            child: Center(child: CustomText(text: '4', textStyle: TextStyle(color: Colors.black, fontSize: 10),),),
-          )
-
-
-        ],),
+              backgroundColor: AppColors.buttonColor.withValues(alpha: 0.5),
+              child: Center(
+                child: CustomText(
+                  text: '4',
+                  textStyle: TextStyle(color: Colors.black, fontSize: 10),
+                ),
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }

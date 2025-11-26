@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:my_own_product/core/data/app_colors.dart';
 import 'package:my_own_product/core/routes/app_routes.dart';
+import 'package:my_own_product/core/utils/base_scaffold.dart';
 import 'package:my_own_product/core/utils/custom_text.dart';
 import 'package:my_own_product/core/utils/custom_text_field.dart';
 import 'package:my_own_product/modules/authentication/views/widgets/auth_appbar.dart';
@@ -12,13 +13,15 @@ class LoginScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return BaseScaffold(
+      safeBottom: true,
+      top: true,
       appBar: authAppBar(
         height: Get.height * 0.15,
         pageName: 'Login',
         pageDescription: 'Please enter Email and Password',
       ),
-      bottomNavigationBar: SizedBox(
+      bottom: SizedBox(
         height: 40,
         child: CustomButton(
           color: AppColors.buttonColor,
@@ -52,9 +55,9 @@ class LoginScreen extends StatelessWidget {
               onChange: (String value) {},
             ),
 
-            SizedBox(height: 8,),
+            SizedBox(height: 8),
             GestureDetector(
-              onTap: (){
+              onTap: () {
                 Get.toNamed(AppRoutes.resetPasswordScreen.name);
               },
 
@@ -97,8 +100,10 @@ class LoginScreen extends StatelessWidget {
       children: [
         CustomText(text: fieldName, textStyle: TextStyle(fontSize: 14)),
         SizedBox(height: 8),
-        CustomTextField(onChange: onChange, hintText: fieldHint,
-          textInputType:textInputType ?? TextInputType.emailAddress,
+        CustomTextField(
+          onChange: onChange,
+          hintText: fieldHint,
+          textInputType: textInputType ?? TextInputType.emailAddress,
         ),
       ],
     );

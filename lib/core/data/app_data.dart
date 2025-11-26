@@ -1,4 +1,4 @@
-class AppData{
+class AppData {
   static List<Map<String, String>> allCountries = [
     {'name': 'Afghanistan', 'flag': '🇦🇫'},
     {'name': 'Albania', 'flag': '🇦🇱'},
@@ -196,6 +196,7 @@ class AppData{
     {'name': 'Zambia', 'flag': '🇿🇲'},
     {'name': 'Zimbabwe', 'flag': '🇿🇼'},
   ];
+
   // List of all available languages
   static List<String> allLanguages = [
     'English',
@@ -239,4 +240,235 @@ class AppData{
     {'name': 'Proficient', 'level': 4, 'dots': 5},
   ];
 
+  // Dummy users with country information and coordinates
+  // Coordinates are approximate center points of each country
+  static List<Map<String, dynamic>> dummyUsers = [
+    {
+      'id': '1',
+      'name': 'John Smith',
+      'country': 'United States',
+      'flag': '🇺🇸',
+      'latitude': 39.8283,
+      'longitude': -98.5795,
+      'avatar': '👤',
+    },
+    {
+      'id': '2',
+      'name': 'Maria Garcia',
+      'country': 'Spain',
+      'flag': '🇪🇸',
+      'latitude': 40.4637,
+      'longitude': -3.7492,
+      'avatar': '👤',
+    },
+    {
+      'id': '3',
+      'name': 'Ahmed Hassan',
+      'country': 'Egypt',
+      'flag': '🇪🇬',
+      'latitude': 26.8206,
+      'longitude': 30.8025,
+      'avatar': '👤',
+    },
+    {
+      'id': '3',
+      'name': 'Ahmed Hassan',
+      'country': 'Egypt',
+      'flag': '🇪🇬',
+      'latitude': 26.8206,
+      'longitude': 30.8025,
+      'avatar': '👤',
+    },
+    {
+      'id': '3',
+      'name': 'Ahmed Hassan',
+      'country': 'Egypt',
+      'flag': '🇪🇬',
+      'latitude': 26.8206,
+      'longitude': 30.8025,
+      'avatar': '👤',
+    },
+    {
+      'id': '3',
+      'name': 'Ahmed Hassan',
+      'country': 'Egypt',
+      'flag': '🇪🇬',
+      'latitude': 26.8206,
+      'longitude': 30.8025,
+      'avatar': '👤',
+    },
+    {
+      'id': '4',
+      'name': 'Yuki Tanaka',
+      'country': 'Japan',
+      'flag': '🇯🇵',
+      'latitude': 36.2048,
+      'longitude': 138.2529,
+      'avatar': '👤',
+    },
+    {
+      'id': '5',
+      'name': 'Emma Wilson',
+      'country': 'United Kingdom',
+      'flag': '🇬🇧',
+      'latitude': 55.3781,
+      'longitude': -3.4360,
+      'avatar': '👤',
+    },
+    {
+      'id': '6',
+      'name': 'Carlos Silva',
+      'country': 'Brazil',
+      'flag': '🇧🇷',
+      'latitude': -14.2350,
+      'longitude': -51.9253,
+      'avatar': '👤',
+    },
+    {
+      'id': '7',
+      'name': 'Priya Patel',
+      'country': 'India',
+      'flag': '🇮🇳',
+      'latitude': 20.5937,
+      'longitude': 78.9629,
+      'avatar': '👤',
+    },
+    {
+      'id': '8',
+      'name': 'François Dubois',
+      'country': 'France',
+      'flag': '🇫🇷',
+      'latitude': 46.2276,
+      'longitude': 2.2137,
+      'avatar': '👤',
+    },
+    {
+      'id': '9',
+      'name': 'Li Wei',
+      'country': 'China',
+      'flag': '🇨🇳',
+      'latitude': 35.8617,
+      'longitude': 104.1954,
+      'avatar': '👤',
+    },
+    {
+      'id': '10',
+      'name': 'Hans Mueller',
+      'country': 'Germany',
+      'flag': '🇩🇪',
+      'latitude': 51.1657,
+      'longitude': 10.4515,
+      'avatar': '👤',
+    },
+    {
+      'id': '11',
+      'name': 'Sofia Rossi',
+      'country': 'Italy',
+      'flag': '🇮🇹',
+      'latitude': 41.8719,
+      'longitude': 12.5674,
+      'avatar': '👤',
+    },
+    {
+      'id': '12',
+      'name': 'Mohammed Al-Rashid',
+      'country': 'Saudi Arabia',
+      'flag': '🇸🇦',
+      'latitude': 23.8859,
+      'longitude': 45.0792,
+      'avatar': '👤',
+    },
+    {
+      'id': '13',
+      'name': 'Kim Soo-jin',
+      'country': 'Korea',
+      'flag': '🇰🇷',
+      'latitude': 35.9078,
+      'longitude': 127.7669,
+      'avatar': '👤',
+    },
+    {
+      'id': '14',
+      'name': 'James Taylor',
+      'country': 'Australia',
+      'flag': '🇦🇺',
+      'latitude': -25.2744,
+      'longitude': 133.7751,
+      'avatar': '👤',
+    },
+    {
+      'id': '15',
+      'name': 'Isabella Martinez',
+      'country': 'Mexico',
+      'flag': '🇲🇽',
+      'latitude': 23.6345,
+      'longitude': -102.5528,
+      'avatar': '👤',
+    },
+    {
+      'id': '16',
+      'name': 'Vladimir Petrov',
+      'country': 'Russia',
+      'flag': '🇷🇺',
+      'latitude': 61.5240,
+      'longitude': 105.3188,
+      'avatar': '👤',
+    },
+    {
+      'id': '17',
+      'name': 'Anna Kowalski',
+      'country': 'Poland',
+      'flag': '🇵🇱',
+      'latitude': 51.9194,
+      'longitude': 19.1451,
+      'avatar': '👤',
+    },
+    {
+      'id': '18',
+      'name': 'Omar Benali',
+      'country': 'Morocco',
+      'flag': '🇲🇦',
+      'latitude': 31.7917,
+      'longitude': -7.0926,
+      'avatar': '👤',
+    },
+    {
+      'id': '19',
+      'name': 'Lucas Anderson',
+      'country': 'Canada',
+      'flag': '🇨🇦',
+      'latitude': 56.1304,
+      'longitude': -106.3468,
+      'avatar': '👤',
+    },
+    {
+      'id': '20',
+      'name': 'Zara Khan',
+      'country': 'Pakistan',
+      'flag': '🇵🇰',
+      'latitude': 30.3753,
+      'longitude': 69.3451,
+      'avatar': '👤',
+    },
+  ];
+
+  // Helper function to get country coordinates by name
+  static Map<String, double>? getCountryCoordinates(String countryName) {
+    try {
+      final user = dummyUsers.firstWhere(
+        (user) => user['country'] == countryName,
+      );
+      return {
+        'latitude': user['latitude'] as double,
+        'longitude': user['longitude'] as double,
+      };
+    } catch (e) {
+      return null;
+    }
+  }
+
+  // Get unique countries from dummy users
+  static List<String> getUniqueCountries() {
+    return dummyUsers.map((user) => user['country'] as String).toSet().toList();
+  }
 }

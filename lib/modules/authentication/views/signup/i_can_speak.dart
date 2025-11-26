@@ -1,8 +1,8 @@
-
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:my_own_product/core/data/app_colors.dart';
 import 'package:my_own_product/core/data/app_data.dart';
+import 'package:my_own_product/core/utils/base_scaffold.dart';
 import 'package:my_own_product/core/utils/custom_text.dart';
 import 'package:my_own_product/modules/authentication/controller/auth_controller.dart';
 import 'package:my_own_product/modules/authentication/views/widgets/auth_appbar.dart';
@@ -15,7 +15,9 @@ class ICanSpeakScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return BaseScaffold(
+      safeBottom: true,
+      top: true,
       appBar: authAppBar(
         height: Get.height * 0.15,
         pageName: "I Can Speak",
@@ -34,7 +36,8 @@ class ICanSpeakScreen extends StatelessWidget {
                 hintText: 'search language',
                 prefixIcon: Icon(Icons.search, color: Colors.grey),
                 filled: true,
-                fillColor: Color(0xFFE8D5FF), // Light purple background
+                fillColor: Color(0xFFE8D5FF),
+                // Light purple background
                 border: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(12),
                   borderSide: BorderSide.none,
@@ -47,48 +50,46 @@ class ICanSpeakScreen extends StatelessWidget {
             ),
           ),
           Expanded(
-            child: Obx(
-              () {
-                // Access reactive properties to ensure Obx tracks them
-                final languages = authController.filteredLanguages;
-                // Track changes to expanded and selected languages via trigger
-                final _ = authController.updateTrigger;
-                
-                return ListView.builder(
-                  padding: EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-                  itemCount: languages.length,
-                  itemBuilder: (context, index) {
-                    final language = languages[index];
-                    
-                    return Obx(
-                      () {
-                        // Access reactive properties for this specific language
-                        // Also access trigger to ensure reactivity
-                        final _ = authController.updateTrigger;
-                        final isExpanded = authController.expandedLanguages.contains(language);
-                        final selectedLevel = authController.selectedLanguages[language];
-                        
-                        return Padding(
-                          padding: EdgeInsets.only(bottom: 12),
-                          child: _LanguageItem(
-                            languageName: language,
-                            isExpanded: isExpanded,
-                            selectedLevel: selectedLevel,
-                            proficiencyLevels: AppData.proficiencyLevels,
-                            onToggle: () {
-                              authController.toggleLanguageExpansion(language);
-                            },
-                            onLevelSelected: (level) {
-                              authController.selectLanguageLevel(language, level);
-                            },
-                          ),
-                        );
-                      },
+            child: Obx(() {
+              // Access reactive properties to ensure Obx tracks them
+              final languages = authController.filteredLanguages;
+              // Track changes to expanded and selected languages via trigger
+              final _ = authController.updateTrigger;
+
+              return ListView.builder(
+                padding: EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+                itemCount: languages.length,
+                itemBuilder: (context, index) {
+                  final language = languages[index];
+
+                  return Obx(() {
+                    // Access reactive properties for this specific language
+                    // Also access trigger to ensure reactivity
+                    final _ = authController.updateTrigger;
+                    final isExpanded = authController.expandedLanguages
+                        .contains(language);
+                    final selectedLevel =
+                        authController.selectedLanguages[language];
+
+                    return Padding(
+                      padding: EdgeInsets.only(bottom: 12),
+                      child: _LanguageItem(
+                        languageName: language,
+                        isExpanded: isExpanded,
+                        selectedLevel: selectedLevel,
+                        proficiencyLevels: AppData.proficiencyLevels,
+                        onToggle: () {
+                          authController.toggleLanguageExpansion(language);
+                        },
+                        onLevelSelected: (level) {
+                          authController.selectLanguageLevel(language, level);
+                        },
+                      ),
                     );
-                  },
-                );
-              },
-            ),
+                  });
+                },
+              );
+            }),
           ),
           SizedBox(
             height: 40,
@@ -100,7 +101,6 @@ class ICanSpeakScreen extends StatelessWidget {
               padding: EdgeInsets.symmetric(vertical: 8),
 
               onTap: () {
-
                 Get.back();
               },
 
@@ -108,7 +108,6 @@ class ICanSpeakScreen extends StatelessWidget {
               child: CustomText(text: 'Done'),
             ).paddingSymmetric(horizontal: 32),
           ).paddingSymmetric(vertical: 24),
-
         ],
       ),
     );
@@ -141,7 +140,7 @@ class _LanguageItem extends StatelessWidget {
         borderRadius: BorderRadius.circular(12),
         boxShadow: [
           BoxShadow(
-            color: Colors.grey.withValues(alpha:0.1),
+            color: Colors.grey.withValues(alpha: 0.1),
             spreadRadius: 1,
             blurRadius: 4,
             offset: Offset(0, 2),
@@ -176,7 +175,10 @@ class _LanguageItem extends StatelessWidget {
                     Padding(
                       padding: EdgeInsets.only(right: 8),
                       child: Container(
-                        padding: EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+                        padding: EdgeInsets.symmetric(
+                          horizontal: 8,
+                          vertical: 4,
+                        ),
                         decoration: BoxDecoration(
                           color: AppColors.buttonColor.withValues(alpha: 0.1),
                           borderRadius: BorderRadius.circular(8),
@@ -193,7 +195,9 @@ class _LanguageItem extends StatelessWidget {
                     ),
                   // Expand/collapse icon
                   Icon(
-                    isExpanded ? Icons.keyboard_arrow_down : Icons.keyboard_arrow_right,
+                    isExpanded
+                        ? Icons.keyboard_arrow_down
+                        : Icons.keyboard_arrow_right,
                     color: Colors.pink,
                     size: 24,
                   ),
@@ -214,9 +218,12 @@ class _LanguageItem extends StatelessWidget {
                   return InkWell(
                     onTap: () => onLevelSelected(levelIndex),
                     child: Container(
-                      padding: EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+                      padding: EdgeInsets.symmetric(
+                        horizontal: 16,
+                        vertical: 12,
+                      ),
                       color: isSelected
-                          ? AppColors.buttonColor.withValues(alpha:0.05)
+                          ? AppColors.buttonColor.withValues(alpha: 0.05)
                           : Colors.transparent,
                       child: Row(
                         children: [
@@ -264,5 +271,3 @@ class _LanguageItem extends StatelessWidget {
     );
   }
 }
-
-

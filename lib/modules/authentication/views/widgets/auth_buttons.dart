@@ -51,7 +51,7 @@ class EmailLoginButton extends StatelessWidget {
               ),
             ),
           ],
-        ).paddingSymmetric(vertical: 8),
+        ).paddingSymmetric(vertical: 10),
       ),
     );
   }

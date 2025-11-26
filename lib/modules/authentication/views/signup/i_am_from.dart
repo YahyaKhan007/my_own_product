@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:my_own_product/core/data/app_colors.dart';
+import 'package:my_own_product/core/utils/base_scaffold.dart';
 import 'package:my_own_product/core/utils/custom_text.dart';
 import 'package:my_own_product/modules/authentication/controller/auth_controller.dart';
 import 'package:my_own_product/modules/authentication/views/widgets/auth_appbar.dart';
@@ -13,7 +14,9 @@ class IAmFromScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return BaseScaffold(
+      safeBottom: true,
+      top: true,
       appBar: authAppBar(
         height: Get.height * 0.15,
         pageName: "I’m from",
@@ -47,7 +50,7 @@ class IAmFromScreen extends StatelessWidget {
           ),
           Expanded(
             child: Obx(
-              ()=> ListView.builder(
+              () => ListView.builder(
                 padding: EdgeInsets.symmetric(horizontal: 16, vertical: 8),
                 itemCount: authController.filteredCountries.length,
                 itemBuilder: (context, index) {
@@ -125,49 +128,45 @@ class _CountryItem extends StatelessWidget {
             ),
           ],
         ),
-        child: Obx(
-          () {
-            final isSelected = authController.selectedCountry.value == countryName;
-            return Row(
-              children: [
-                // Flag emoji in a circle
-                Container(
-                  width: 40,
-                  height: 40,
-                  decoration: BoxDecoration(
-                    shape: BoxShape.circle,
-                    color: Colors.grey.shade100,
-                  ),
-                  child: Center(
-                    child: Text(
-                      flagEmoji,
-                      style: TextStyle(fontSize: 24),
-                    ),
+        child: Obx(() {
+          final isSelected =
+              authController.selectedCountry.value == countryName;
+          return Row(
+            children: [
+              // Flag emoji in a circle
+              Container(
+                width: 40,
+                height: 40,
+                decoration: BoxDecoration(
+                  shape: BoxShape.circle,
+                  color: Colors.grey.shade100,
+                ),
+                child: Center(
+                  child: Text(flagEmoji, style: TextStyle(fontSize: 24)),
+                ),
+              ),
+              SizedBox(width: 16),
+              // Country name
+              Expanded(
+                child: CustomText(
+                  text: countryName,
+                  textStyle: TextStyle(
+                    fontSize: 16,
+                    fontWeight: FontWeight.w500,
+                    color: Colors.black,
                   ),
                 ),
-                SizedBox(width: 16),
-                // Country name
-                Expanded(
-                  child: CustomText(
-                    text: countryName,
-                    textStyle: TextStyle(
-                      fontSize: 16,
-                      fontWeight: FontWeight.w500,
-                      color: Colors.black,
-                    ),
-                  ),
+              ),
+              // Selection indicator
+              if (isSelected)
+                Icon(
+                  Icons.check_circle,
+                  color: AppColors.buttonColor,
+                  size: 24,
                 ),
-                // Selection indicator
-                if (isSelected)
-                  Icon(
-                    Icons.check_circle,
-                    color: AppColors.buttonColor,
-                    size: 24,
-                  ),
-              ],
-            );
-          },
-        ),
+            ],
+          );
+        }),
       ),
     );
   }

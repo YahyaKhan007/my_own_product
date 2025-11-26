@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:my_own_product/core/data/app_colors.dart';
+import 'package:my_own_product/core/utils/base_scaffold.dart';
 import 'package:my_own_product/core/utils/custom_text.dart';
 import 'package:my_own_product/modules/authentication/controller/auth_controller.dart';
 import 'package:my_own_product/modules/authentication/views/widgets/auth_appbar.dart';
@@ -13,11 +14,14 @@ class IAmLearningScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return BaseScaffold(
+      safeBottom: true,
+      top: true,
       appBar: authAppBar(
         height: Get.height * 0.15,
         pageName: "I'm learning",
-        pageDescription: "Please select all the languages you are interested to learn",
+        pageDescription:
+            "Please select all the languages you are interested to learn",
       ),
       body: Column(
         children: [
@@ -32,7 +36,8 @@ class IAmLearningScreen extends StatelessWidget {
                 hintText: 'search language',
                 prefixIcon: Icon(Icons.search, color: Colors.grey),
                 filled: true,
-                fillColor: Color(0xFFE8D5FF), // Light purple background
+                fillColor: Color(0xFFE8D5FF),
+                // Light purple background
                 border: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(12),
                   borderSide: BorderSide.none,
@@ -45,42 +50,39 @@ class IAmLearningScreen extends StatelessWidget {
             ),
           ),
           Expanded(
-            child: Obx(
-              () {
-                // Access reactive properties to ensure Obx tracks them
-                final languages = authController.filteredLanguages;
-                // Track changes to selected learning languages via trigger
-                final _ = authController.learningLanguagesUpdateTrigger;
-                
-                return ListView.builder(
-                  padding: EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-                  itemCount: languages.length,
-                  itemBuilder: (context, index) {
-                    final language = languages[index];
-                    
-                    return Obx(
-                      () {
-                        // Access reactive properties for this specific language
-                        // Also access trigger to ensure reactivity
-                        final _ = authController.learningLanguagesUpdateTrigger;
-                        final isSelected = authController.isLearningLanguageSelected(language);
-                        
-                        return Padding(
-                          padding: EdgeInsets.only(bottom: 12),
-                          child: _LearningLanguageItem(
-                            languageName: language,
-                            isSelected: isSelected,
-                            onTap: () {
-                              authController.toggleLearningLanguage(language);
-                            },
-                          ),
-                        );
-                      },
+            child: Obx(() {
+              // Access reactive properties to ensure Obx tracks them
+              final languages = authController.filteredLanguages;
+              // Track changes to selected learning languages via trigger
+              final _ = authController.learningLanguagesUpdateTrigger;
+
+              return ListView.builder(
+                padding: EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+                itemCount: languages.length,
+                itemBuilder: (context, index) {
+                  final language = languages[index];
+
+                  return Obx(() {
+                    // Access reactive properties for this specific language
+                    // Also access trigger to ensure reactivity
+                    final _ = authController.learningLanguagesUpdateTrigger;
+                    final isSelected = authController
+                        .isLearningLanguageSelected(language);
+
+                    return Padding(
+                      padding: EdgeInsets.only(bottom: 12),
+                      child: _LearningLanguageItem(
+                        languageName: language,
+                        isSelected: isSelected,
+                        onTap: () {
+                          authController.toggleLearningLanguage(language);
+                        },
+                      ),
                     );
-                  },
-                );
-              },
-            ),
+                  });
+                },
+              );
+            }),
           ),
           SizedBox(
             height: 40,
@@ -92,12 +94,7 @@ class IAmLearningScreen extends StatelessWidget {
                 Get.back();
               },
               isExpanded: false,
-              child: Obx(
-                () => CustomText(
-                  text: 'Done'
-
-                ),
-              ),
+              child: CustomText(text: 'Done'),
             ).paddingSymmetric(horizontal: 32),
           ).paddingSymmetric(vertical: 24),
         ],
@@ -130,9 +127,7 @@ class _LearningLanguageItem extends StatelessWidget {
               : Colors.white,
           borderRadius: BorderRadius.circular(12),
           border: Border.all(
-            color: isSelected
-                ? AppColors.buttonColor
-                : Colors.grey.shade300,
+            color: isSelected ? AppColors.buttonColor : Colors.grey.shade300,
             width: isSelected ? 2 : 1,
           ),
           boxShadow: [
@@ -153,9 +148,7 @@ class _LearningLanguageItem extends StatelessWidget {
                 textStyle: TextStyle(
                   fontSize: 16,
                   fontWeight: isSelected ? FontWeight.w600 : FontWeight.w500,
-                  color: isSelected
-                      ? AppColors.buttonColor
-                      : Colors.black,
+                  color: isSelected ? AppColors.buttonColor : Colors.black,
                 ),
               ),
             ),
@@ -165,9 +158,7 @@ class _LearningLanguageItem extends StatelessWidget {
               height: 24,
               decoration: BoxDecoration(
                 shape: BoxShape.circle,
-                color: isSelected
-                    ? AppColors.buttonColor
-                    : Colors.transparent,
+                color: isSelected ? AppColors.buttonColor : Colors.transparent,
                 border: Border.all(
                   color: isSelected
                       ? AppColors.buttonColor
@@ -176,11 +167,7 @@ class _LearningLanguageItem extends StatelessWidget {
                 ),
               ),
               child: isSelected
-                  ? Icon(
-                      Icons.check,
-                      color: Colors.white,
-                      size: 16,
-                    )
+                  ? Icon(Icons.check, color: Colors.white, size: 16)
                   : null,
             ),
           ],

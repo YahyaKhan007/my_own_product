@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:my_own_product/core/data/app_colors.dart';
-import 'package:my_own_product/core/utils/custom_container.dart';
-import 'package:my_own_product/modules/authentication/views/widgets/auth_appbar.dart';
 import 'package:my_own_product/modules/dashboard/sub_modules/chat/views/widgets/message_appbar.dart';
+import 'package:my_own_product/modules/dashboard/sub_modules/profile/views/user_profile_screen.dart';
 
 class MessageScreen extends StatefulWidget {
   const MessageScreen({super.key});
@@ -18,17 +17,40 @@ class _MessageScreenState extends State<MessageScreen> {
     return Scaffold(
       backgroundColor: AppColors.buttonColor,
       appBar: messageAppBar(
-        imagePath:  'https://i.pinimg.com/236x/4d/7d/fd/4d7dfdae8d25a2ca202c357cf4f0a732.jpg',
-          height: Get.height * 0.12,
-          backgroundColor: AppColors.buttonColor,
-          pageNameTextColor: Colors.white,
-          descriptionTextColor: Colors.white.withValues(alpha: 0.8),
-          pageName: "Usama", pageDescription: "Online"),
-      body: CustomContainer(
-        borderRadius: 40,
-        color: Colors.white,
+        onImageClicked: () {
+          Get.to(() => UserProfileScreen());
+        },
+        imagePath:
+            'https://i.pinimg.com/236x/4d/7d/fd/4d7dfdae8d25a2ca202c357cf4f0a732.jpg',
+        height: Get.height * 0.13,
+        backgroundColor: AppColors.buttonColor,
+        pageNameTextColor: Colors.white,
+        descriptionTextColor: Colors.white.withValues(alpha: 0.8),
+        pageName: "Usama",
+        pageDescription: "Online",
       ),
+      body: Container(
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.only(
+            topLeft: Radius.circular(40),
+            topRight: Radius.circular(40),
+          ),
 
+          color: Colors.white,
+        ),
+      ),
+    );
+  }
+
+  Widget selfMessage() {
+    return Container(
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.only(
+          topLeft: Radius.circular(16),
+          topRight: Radius.circular(16),
+          bottomRight: Radius.circular(16),
+        ),
+      ),
     );
   }
 }

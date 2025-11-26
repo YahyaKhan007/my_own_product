@@ -1,7 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_advanced_drawer/flutter_advanced_drawer.dart';
 import 'package:get/get.dart';
 import 'package:my_own_product/core/data/app_colors.dart';
+import 'package:my_own_product/core/utils/base_scaffold.dart';
 import 'package:my_own_product/modules/dashboard/controller/dashboard_controller.dart';
+import 'package:my_own_product/modules/drawer/controller/drawer_controller.dart';
+
+import '../../drawer/view/drawer_screen.dart';
 
 class DashboardScreen extends StatelessWidget {
   DashboardScreen({super.key});
@@ -10,46 +15,103 @@ class DashboardScreen extends StatelessWidget {
     DashboardController(),
   );
 
+  final AppDrawerController drawerController = Get.find<AppDrawerController>();
+
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return BaseScaffold(
+      safeBottom: true,
+      top: true,
       body: Obx(
-        () => dashboardController
-            .appPages[dashboardController.currentScreenIndex.value],
+        () => AdvancedDrawer(
+          disabledGestures: true,
+          rtlOpening: true,
+          controller: drawerController.advancedDrawerController,
+          drawer: dashboardController.currentScreenIndex.value == 4
+              ? ProfileDrawerMenuScreen()
+              : MainDrawerMenuScreen(),
+          child: dashboardController
+              .appPages[dashboardController.currentScreenIndex.value],
+        ),
       ),
-      bottomNavigationBar: appBottomBar(),
+
+      // Obx(
+      //   () => dashboardController
+      //       .appPages[dashboardController.currentScreenIndex.value],
+      // ),
+      bottom: appBottomBar(),
     );
   }
 
   Widget appBottomBar() {
+    final AppDrawerController drawerController = Get.find();
     return SizedBox(
-      height: 60,
+      height: 50,
       child: Row(
         children: [
           Expanded(
             child: bottomBarItem(
               index: 0,
-              imagePath: 'assets/icons/exploreIcon.png',
+              imagePath: 'assets/icons/voiceIcon.png',
               onTap: () {
-                dashboardController.currentScreenIndex.value = 0;
+                if (drawerController.isDrawerOpen.value) {
+                  drawerController.closeDrawer();
+                } else {
+                  dashboardController.currentScreenIndex.value = 0;
+                }
               },
             ),
           ),
           Expanded(
             child: bottomBarItem(
               index: 1,
-              imagePath: 'assets/icons/chatIcon.png',
+              imagePath: 'assets/icons/exploreIcon.png',
               onTap: () {
-                dashboardController.currentScreenIndex.value = 1;
+                if (drawerController.isDrawerOpen.value) {
+                  drawerController.closeDrawer();
+                } else {
+                  dashboardController.currentScreenIndex.value = 1;
+                }
               },
             ),
           ),
           Expanded(
             child: bottomBarItem(
               index: 2,
+              imagePath: 'assets/icons/chatIcon.png',
+              onTap: () {
+                if (drawerController.isDrawerOpen.value) {
+                  drawerController.closeDrawer();
+                } else {
+                  dashboardController.currentScreenIndex.value = 2;
+                }
+              },
+            ),
+          ),
+          Expanded(
+            child: bottomBarItem(
+              index: 3,
+              imagePath: 'assets/icons/find_friends_icon.png',
+              onTap: () {
+                if (drawerController.isDrawerOpen.value) {
+                  drawerController.closeDrawer();
+                } else {
+                  dashboardController.currentScreenIndex.value = 3;
+                }
+              },
+            ),
+          ),
+
+          Expanded(
+            child: bottomBarItem(
+              index: 4,
               imagePath: 'assets/icons/profileIcon.png',
               onTap: () {
-                dashboardController.currentScreenIndex.value = 2;
+                if (drawerController.isDrawerOpen.value) {
+                  drawerController.closeDrawer();
+                } else {
+                  dashboardController.currentScreenIndex.value = 4;
+                }
               },
             ),
           ),

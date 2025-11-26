@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:my_own_product/core/data/app_colors.dart';
 import 'package:my_own_product/core/routes/app_routes.dart';
+import 'package:my_own_product/core/utils/base_scaffold.dart';
 import 'package:my_own_product/modules/authentication/views/widgets/auth_buttons.dart';
 
 class OnboardingPage1 extends StatelessWidget {
@@ -9,14 +10,16 @@ class OnboardingPage1 extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return BaseScaffold(
+      safeBottom: true,
+      top: true,
       body: Container(
         height: Get.height,
         width: Get.width,
         decoration: BoxDecoration(
           image: DecorationImage(
             image: AssetImage('assets/icons/onb1.png'),
-            fit: BoxFit.cover,
+            fit: BoxFit.fill,
           ),
         ),
         child: Column(
@@ -31,19 +34,19 @@ class OnboardingPage1 extends StatelessWidget {
                     iconPath: 'assets/icons/facebook.png',
                     onPressed: () {},
                   ),
-                  SizedBox(width: 16,),
+                  SizedBox(width: 16),
                   SocialLogin(
                     iconPath: 'assets/icons/facebook.png',
                     onPressed: () {},
                   ),
-                  SizedBox(width: 16,),
+                  SizedBox(width: 16),
 
                   SocialLogin(
                     iconPath: 'assets/icons/facebook.png',
                     onPressed: () {},
                   ),
                 ],
-              )
+              ),
             ),
             SizedBox(height: 16),
 
@@ -87,10 +90,10 @@ class OnboardingPage1 extends StatelessWidget {
             SizedBox(height: 8),
 
             GestureDetector(
-              onTap: (){
+              onTap: () {
                 Get.toNamed(AppRoutes.signupScreen.name);
               },
-                
+
               child: RichText(
                 textAlign: TextAlign.center,
                 maxLines: 5,
@@ -109,8 +112,7 @@ class OnboardingPage1 extends StatelessWidget {
                 ),
               ),
             ),
-            SizedBox(height: 16,),
-
+            SizedBox(height: 16),
           ],
         ).paddingSymmetric(horizontal: 24),
       ),

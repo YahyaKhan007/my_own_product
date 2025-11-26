@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:my_own_product/core/data/app_colors.dart';
 import 'package:my_own_product/core/routes/app_routes.dart';
+import 'package:my_own_product/core/utils/base_scaffold.dart';
 import 'package:my_own_product/core/utils/custom_container.dart';
 import 'package:my_own_product/core/utils/custom_text.dart';
 import 'package:my_own_product/modules/authentication/controller/auth_controller.dart';
@@ -10,18 +11,21 @@ import 'package:my_own_product/modules/authentication/views/widgets/auth_buttons
 
 class BasicInfoScreen extends StatelessWidget {
   final AuthController authController = Get.find();
+
   BasicInfoScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return BaseScaffold(
+      safeBottom: true,
+      top: true,
       appBar: authAppBar(
-        height: Get.height * 0.15,
+        height: Get.height * 0.17,
         pageName: 'Basic Information',
         pageDescription:
             'Please provide the basic information so we can create your profile',
       ),
-      bottomNavigationBar: SizedBox(
+      bottom: SizedBox(
         height: 40,
         child: CustomButton(
           color: AppColors.buttonColor,
@@ -96,7 +100,7 @@ class BasicInfoScreen extends StatelessWidget {
                   alignment: Alignment.centerRight,
                   child: value.isNotEmpty
                       ? CustomText(
-                    maxLines: 1,
+                          maxLines: 1,
                           text: value.value,
                           textStyle: TextStyle(
                             fontSize: 14,
@@ -118,8 +122,6 @@ class BasicInfoScreen extends StatelessWidget {
             Icon(Icons.arrow_forward_ios, size: 16),
           ],
         ).paddingSymmetric(vertical: 8),
-
-
       ),
     );
   }

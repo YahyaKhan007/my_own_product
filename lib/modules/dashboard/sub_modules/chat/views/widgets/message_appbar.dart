@@ -7,11 +7,12 @@ PreferredSize messageAppBar({
   double? height,
   required String pageName,
   required String pageDescription,
+  required VoidCallback onImageClicked,
   Color? backgroundColor,
   Color? iconColor,
   Color? pageNameTextColor,
   Color? descriptionTextColor,
-  required String imagePath
+  required String imagePath,
 }) {
   return PreferredSize(
     preferredSize: Size.fromHeight(height ?? 48),
@@ -29,7 +30,7 @@ PreferredSize messageAppBar({
             child: Icon(
               Icons.arrow_back_ios,
               color: iconColor ?? Colors.black,
-              size: 16,
+              size: 20,
             ),
           ),
           SizedBox(height: 6),
@@ -39,7 +40,6 @@ PreferredSize messageAppBar({
             mainAxisSize: MainAxisSize.max,
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-
               Expanded(
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -63,19 +63,20 @@ PreferredSize messageAppBar({
                 ),
               ),
               Spacer(),
-              CircleAvatar(
-               radius: 31,
-                backgroundColor: Colors.black.withValues(alpha: 0.5),
+              InkWell(
+                onTap: onImageClicked,
                 child: CircleAvatar(
-                  radius: 30,
-                  backgroundColor: Colors.transparent,
-                  backgroundImage: NetworkImage(imagePath),
+                  radius: 31,
+                  backgroundColor: Colors.black.withValues(alpha: 0.5),
+                  child: CircleAvatar(
+                    radius: 30,
+                    backgroundColor: Colors.transparent,
+                    backgroundImage: NetworkImage(imagePath),
+                  ),
                 ),
-              )
-
+              ),
             ],
           ),
-
         ],
       ).paddingSymmetric(horizontal: 16),
     ),

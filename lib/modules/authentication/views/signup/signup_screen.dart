@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:my_own_product/core/data/app_colors.dart';
 import 'package:my_own_product/core/routes/app_routes.dart';
-import 'package:my_own_product/core/utils/custom_container.dart';
+import 'package:my_own_product/core/utils/base_scaffold.dart';
 import 'package:my_own_product/core/utils/custom_text.dart';
 import 'package:my_own_product/core/utils/custom_text_field.dart';
 import 'package:my_own_product/modules/authentication/views/widgets/auth_appbar.dart';
@@ -13,13 +13,15 @@ class SignupScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return BaseScaffold(
+      safeBottom: true,
+      top: true,
       appBar: authAppBar(
         height: Get.height * 0.15,
         pageName: 'Signup',
         pageDescription: 'Please create an account using email and password',
       ),
-      bottomNavigationBar: SizedBox(
+      bottom: SizedBox(
         height: 40,
         child: CustomButton(
           color: AppColors.buttonColor,
@@ -51,21 +53,22 @@ class SignupScreen extends StatelessWidget {
               fieldName: 'Password',
               fieldHint: 'Enter the password',
 
+              onChange: (String value) {},
+            ),
+            SizedBox(height: 8),
+            signupOption(
+              textInputType: TextInputType.visiblePassword,
 
-              onChange: (String value) {},),
-              SizedBox(height: 8),
-              signupOption(
-                textInputType: TextInputType.visiblePassword,
-
-                fieldName: 'Confirm Password',
-                fieldHint: 'Enter password again',
-                onChange: (String value) {},
+              fieldName: 'Confirm Password',
+              fieldHint: 'Enter password again',
+              onChange: (String value) {},
             ),
           ],
         ).paddingSymmetric(horizontal: 16),
       ),
     );
   }
+
   Widget signupOption({
     required String fieldName,
     required String fieldHint,
@@ -78,11 +81,12 @@ class SignupScreen extends StatelessWidget {
       children: [
         CustomText(text: fieldName, textStyle: TextStyle(fontSize: 14)),
         SizedBox(height: 8),
-        CustomTextField(onChange: onChange, hintText: fieldHint,
-          textInputType:textInputType ?? TextInputType.emailAddress,
+        CustomTextField(
+          onChange: onChange,
+          hintText: fieldHint,
+          textInputType: textInputType ?? TextInputType.emailAddress,
         ),
       ],
     );
   }
-
 }

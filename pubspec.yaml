@@ -38,6 +38,9 @@ dependencies:
   shared_preferences: ^2.5.3
   overlay_support: ^2.1.0
   flutter_svg: ^2.2.3
+  flutter_zoom_drawer: ^3.2.0
+  flutter_advanced_drawer: ^1.5.0
+  google_maps_flutter: ^2.5.0
 
 dev_dependencies:
   flutter_test:

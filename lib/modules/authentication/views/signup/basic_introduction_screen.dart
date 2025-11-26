@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:my_own_product/core/data/app_colors.dart';
 import 'package:my_own_product/core/routes/app_routes.dart';
+import 'package:my_own_product/core/utils/base_scaffold.dart';
 import 'package:my_own_product/core/utils/custom_text.dart';
 import 'package:my_own_product/core/utils/custom_text_field.dart';
 import 'package:my_own_product/modules/authentication/controller/auth_controller.dart';
@@ -12,18 +13,21 @@ import 'package:my_own_product/modules/authentication/views/widgets/drop_down_se
 
 class BasicIntroductionScreen extends StatelessWidget {
   BasicIntroductionScreen({super.key});
+
   final AuthController authController = Get.find();
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return BaseScaffold(
+      safeBottom: true,
+      top: true,
       appBar: authAppBar(
         height: Get.height * 0.15,
         pageName: 'Basic Introduction',
         pageDescription:
             'Please provide your personal information accurate. So we can offer you more personalized experience',
       ),
-      bottomNavigationBar: SizedBox(
+      bottom: SizedBox(
         height: 40,
         child: CustomButton(
           color: AppColors.buttonColor,
@@ -32,11 +36,8 @@ class BasicIntroductionScreen extends StatelessWidget {
           padding: EdgeInsets.symmetric(vertical: 8),
 
           onTap: () {
-
             Get.toNamed(AppRoutes.purposeScreen.name);
           },
-
-
 
           isExpanded: false,
           child: CustomText(text: 'Next'),
